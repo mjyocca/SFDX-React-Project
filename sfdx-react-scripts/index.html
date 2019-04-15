@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale-1" />
+        <meta name="theme-color" content="#000000" />
+        <title><%= htmlWebpackPlugin.options.title %></title>
+        <% for (var css in htmlWebpackPlugin.files.css) { %>
+        <link href="<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet">
+        <% } %>
+    </head>
+    <body>
+        <noscript>You need to enable Javascript to run this app.</noscript>
+        <% if (htmlWebpackPlugin.options.appMountId) { %>
+        <div id="<%= htmlWebpackPlugin.options.appMountId%>"></div>
+        <% } %>
+        <% for (var chunk in htmlWebpackPlugin.files.chunk) { %>
+        <script src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
+        <% } %>
+        <% if (htmlWebpackPlugin.options.devServer) { %>
+        <script src="<%= htmlWebpackPlugin.options.devServer %>/webpack-dev-server.js"></script>
+        <% } %>
+    </body>
+</html>
